@@ -430,3 +430,53 @@ bool sub_tree(Tree *r1, Tree *r2)
 
   return(sub_tree(r1->left, r2) || sub_tree(r1->right, r2));
 }
+
+bool is_sub_tree(Tree *r1, Tree *r2)
+{
+  if(r2 == NULL)
+  {
+    return(true);
+  }
+
+  else
+  {
+    return sub_tree(r1, r2);
+  }
+}
+
+void mirror(Tree *r)
+{
+  // change a tree so that the roles of the left and
+  // right pointers are swapped at every node
+
+  if(r == NULL)
+  {
+    return;
+  }
+
+  Tree *tmp;
+
+  mirror(r->left);
+  mirror(r->right);
+
+  tmp = r->right;
+  r->right = r->left;
+  r->left = tmp;
+}
+
+Tree * add_to_BST(char arr[], int start, int end)
+{
+  // create a new tree from a sorted array
+
+  if(end < start)
+  {
+    return NULL;
+  }
+
+  int mid = (start + end)/2;
+
+  Tree *r = new Tree;
+  r->data = arr[mid];
+  r->left = add_to_BST(arr, start, mid - 1);
+  r->right = add_to_
+}
